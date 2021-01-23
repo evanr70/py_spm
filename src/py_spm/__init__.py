@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+# flake8: noqa
+
+from _channel import Channel
+from _data import Data
+from _event import Event
+from _meeg import MEEG
+from _trial import Trial
 from pkg_resources import DistributionNotFound, get_distribution
 
 try:

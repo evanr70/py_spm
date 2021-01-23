@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-
 from py_spm.skeleton import fib
 
 __author__ = "Evan"
