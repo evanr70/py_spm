@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
 
-from _channel import Channel
-from _data import Data
-from _event import Event
-from _meeg import MEEG
-from _trial import Trial
 from pkg_resources import DistributionNotFound, get_distribution
+from py_spm._channel import Channel
+from py_spm._data import Data
+from py_spm._event import Event
+from py_spm._meeg import MEEG
+from py_spm._trial import Trial
 
 try:
     # Change here if project is renamed and does not equal the package name

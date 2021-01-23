@@ -1,3 +1,4 @@
+import numpy as np
 from py_spm._event import Event
 
 
@@ -11,7 +12,7 @@ class Trial:
         self.repl = repl
 
     def _event_property(self, property_):
-        return [getattr(event, property_) for event in self.events]
+        return np.array([getattr(event, property_) for event in self.events])
 
     @property
     def event_types(self):
@@ -32,3 +33,20 @@ class Trial:
     @property
     def event_offsets(self):
         return self._event_property("offset")
+
+    @property
+    def event_end_times(self):
+        return self._event_property("end_time")
+
+    @property
+    def event_samples(self):
+        return self._event_property("sample")
+
+    @property
+    def event_end_samples(self):
+        return self._event_property("end_sample")
+
+    def calculate_samples(self, sample_frequency):
+        for event in self.events:
+            event.sample = round(event.time * sample_frequency)
+            event.end_sample = round(event.end_time * sample_frequency)

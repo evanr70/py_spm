@@ -1,4 +1,4 @@
-from src.py_spm.utils import empty_to_none
+from py_spm.utils import empty_to_none
 
 
 class Event:
@@ -8,6 +8,10 @@ class Event:
         self.duration = empty_to_none(duration)
         self.time = time
         self.offset = offset
+        self.end_time = time + (0 if self.duration is None else self.duration)
+
+        self.sample = None
+        self.end_sample = None
 
     @classmethod
     def from_dict(cls, event_dict):

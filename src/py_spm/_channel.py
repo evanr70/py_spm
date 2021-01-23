@@ -1,5 +1,14 @@
 from py_spm.utils import empty_to_none
 
+chan_types = {
+    "EOG": ["VEOG", "HEOG"],
+    "ECG": ["EKG"],
+    "REF": ["REFMAG", "REFGRAD", "REFPLANAR"],
+    "MEG": ["MEGMAG", "MEGGRAD"],
+    "MEGANY": ["MEG", "MEGMAG", "MEGGRAD", "MEGPLANAR"],
+    "MEEG": ["EEG", "MEG", "MEGMAG", "MEGCOMB", "MEGGRAD", "MEGPLANAR"],
+}
+
 
 class Channel:
     def __init__(self, bad=None, label=None, type_=None, x=None, y=None, units=None):
