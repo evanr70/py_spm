@@ -3,17 +3,12 @@ py_spm
 ======
 
 
-Add a short description here!
+A Python package for managing SPM MEEG objects.
 
 
 Description
 ===========
 
-A longer description of your project goes here...
+This package aims to make processes which would typically require
+some combination of SPM and OSL possible in native Python.
 
-
-Note
-====
-
-This project has been set up using PyScaffold 3.3.1. For details and usage
-information on PyScaffold see https://pyscaffold.org/.

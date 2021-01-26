@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* Evan <evanr70@gmail.com>
+* Evan Roberts <evanr70@gmail.com>
