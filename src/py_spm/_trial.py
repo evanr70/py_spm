@@ -1,5 +1,9 @@
+from logging import getLogger
+
 import numpy as np
 from py_spm._event import Event
+
+_logger = getLogger("py_spm")
 
 
 class Trial:
@@ -11,42 +15,74 @@ class Trial:
         self.tag = tag
         self.repl = repl
 
+    def calculate_samples(self, sample_frequency):
+        for event in self.events:
+            event.sample = np.floor(event.time * sample_frequency).astype(int)
+            event.end_sample = np.floor(event.end_time * sample_frequency).astype(int)
+
     def _event_property(self, property_):
         return np.array([getattr(event, property_) for event in self.events])
 
+    def _set_event_property(self, property_, values):
+        if len(self.events) != len(values):
+            _logger.warning(
+                f"{len(self.events)} events, but {len(values)} values given."
+            )
+        for event, value in zip(self.events, values):
+            setattr(event, property_, value)
+
     @property
-    def event_types(self):
+    def types(self):
         return self._event_property("type")
 
     @property
-    def event_values(self):
+    def values(self):
         return self._event_property("value")
 
     @property
-    def event_durations(self):
+    def durations(self):
         return self._event_property("duration")
 
     @property
-    def event_times(self):
+    def times(self):
         return self._event_property("time")
 
     @property
-    def event_offsets(self):
+    def offsets(self):
         return self._event_property("offset")
 
     @property
-    def event_end_times(self):
+    def end_times(self):
         return self._event_property("end_time")
 
     @property
-    def event_samples(self):
+    def samples(self):
         return self._event_property("sample")
 
     @property
-    def event_end_samples(self):
+    def end_samples(self):
         return self._event_property("end_sample")
 
-    def calculate_samples(self, sample_frequency):
-        for event in self.events:
-            event.sample = round(event.time * sample_frequency)
-            event.end_sample = round(event.end_time * sample_frequency)
+    @property
+    def good_samples(self):
+        return self._event_property("good_sample")
+
+    @good_samples.setter
+    def good_samples(self, values):
+        self._set_event_property("good_sample", values)
+
+    @property
+    def good_end_samples(self):
+        return self._event_property("good_end_sample")
+
+    @good_end_samples.setter
+    def good_end_samples(self, values):
+        return self._set_event_property("good_end_sample", values)
+
+    @property
+    def trial_starts(self):
+        return self._event_property("trial_start")
+
+    @trial_starts.setter
+    def trial_starts(self, values):
+        return self._set_event_property("trial_start", values)

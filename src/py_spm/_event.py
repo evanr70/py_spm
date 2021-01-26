@@ -1,17 +1,27 @@
-from py_spm.utils import empty_to_none
+from py_spm.utils import empty_to_zero
 
 
 class Event:
     def __init__(self, type_, value, duration, time, offset):
         self.type = type_
         self.value = value
-        self.duration = empty_to_none(duration)
+        self.duration = empty_to_zero(duration)
+
+        if "artefact" in self.type.lower():
+            self.duration *= 1000
+
         self.time = time
         self.offset = offset
-        self.end_time = time + (0 if self.duration is None else self.duration)
+        self.end_time = time + self.duration / 1000
 
-        self.sample = None
-        self.end_sample = None
+        self.sample = -1
+        self.end_sample = -1
+
+        self.good_sample = -1
+        self.good_end_sample = -1
+
+        self.trial_start = -1
+        self.trial_end = -1
 
     @classmethod
     def from_dict(cls, event_dict):
