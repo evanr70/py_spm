@@ -1,4 +1,4 @@
-  :warning: **This repo is now archived. Its functionality is encapsulated by `oslpy <https://github.com/OHBA-analysis/osl>`_ in `this folder <https://github.com/OHBA-analysis/osl/tree/main/osl/utils/spmio>`_
+  ⚠️ **This repo is now archived. Its functionality is encapsulated by `oslpy <https://github.com/OHBA-analysis/osl>`_ in `this folder <https://github.com/OHBA-analysis/osl/tree/main/osl/utils/spmio>`_**
 
 ======
 py_spm
